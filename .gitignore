@@ -1,3 +1,16 @@
 #Target files
 
 src/main/g8/target/
+src/main/g8/project/target/
+src/main/g8/project/project/
+
+#Logs
+
+src/main/g8/logs/
+
+#Intellij IDEA
+
+src/main/g8/.idea/
+src/main/g8/.idea_modules/
+
+
