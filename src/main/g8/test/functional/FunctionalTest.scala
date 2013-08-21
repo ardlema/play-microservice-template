@@ -4,6 +4,7 @@ import org.scalatest.FeatureSpec
 import play.api.test.Helpers._
 import play.api.test.{FakeRequest, FakeApplication}
 import org.scalatest.matchers.ShouldMatchers
+import play.api.mvc.Result
 
 class FunctionalTest
   extends FeatureSpec
@@ -13,9 +14,10 @@ class FunctionalTest
 
     scenario("el nombre de la receta existe") {
       running(FakeApplication()) {
-        val home = route(FakeRequest(GET, "/")).get
+        val response: Result = route(FakeRequest(GET, "/receta/macarrones")).get
 
-        status(home) should be(OK)
+        status(response) should be(OK)
+        contentAsString(response) should be("""{"dificultad":"facil","precio":"bajo","receta":"cocer los macarrones y echarles tomate"}""")
       }
     }
 
