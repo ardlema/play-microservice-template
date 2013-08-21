@@ -13,4 +13,6 @@ src/main/g8/logs/
 src/main/g8/.idea/
 src/main/g8/.idea_modules/
 
+#OSX Files
 
+src/main/g8/.DS_Store
