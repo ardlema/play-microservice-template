@@ -5,7 +5,21 @@ import play.api.mvc._
 object CookBookController extends Controller {
 
   def getReceta(descripcion: String) = Action {
-    Ok("""{"dificultad":"facil","precio":"bajo","receta":"cocer los macarrones y echarles tomate"}""")
+
+    val receta = {
+    if (descripcion.equals("macarrones"))
+      Some("""{"dificultad":"facil","precio":"bajo","receta":"cocer los macarrones y echarles tomate"}""")
+    else
+      None
+    }
+
+    receta match {
+      case Some(receta) => Ok(receta)
+      case _ => NotFound
+    }
+
   }
+
+
 
 }

@@ -21,6 +21,12 @@ class FunctionalTest
       }
     }
 
-    scenario("el nombre de la receta no existe") (pending)
+    scenario("el nombre de la receta no existe") {
+      running(FakeApplication()) {
+        val response: Result = route(FakeRequest(GET, "/receta/fabada")).get
+
+        status(response) should be(NOT_FOUND)
+      }
+    }
   }
 }
