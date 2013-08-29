@@ -13,6 +13,8 @@ object CookBookController extends Controller {
       None
     }
 
+    //val receta = repository.getRecetaByDescripcion(descripcion)
+
     receta match {
       case Some(receta) => Ok(receta)
       case _ => NotFound
