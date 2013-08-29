@@ -6,6 +6,10 @@ object Repository {
 
   var repository: List[Recipe] = List.empty
 
+  def clean() {
+    repository = List.empty
+  }
+
   def addRecipe(recipe: Recipe) {
     repository ::= recipe
   }
