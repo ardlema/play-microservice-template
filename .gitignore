@@ -3,6 +3,9 @@
 src/main/g8/target/
 src/main/g8/project/target/
 src/main/g8/project/project/
+project/project/target/
+project/target/
+target/
 
 #Logs
 
@@ -12,6 +15,8 @@ src/main/g8/logs/
 
 src/main/g8/.idea/
 src/main/g8/.idea_modules/
+.idea/
+.idea_modules/
 
 #OSX Files
 
