@@ -1,22 +1,17 @@
 package controllers
 
 import play.api.mvc._
+import repository.Repository
+import model.JsonParser
 
 object CookBookController extends Controller {
 
   def getReceta(descripcion: String) = Action {
 
-    val receta = {
-    if (descripcion.equals("macarrones"))
-      Some("""{"dificultad":"facil","precio":"bajo","receta":"cocer los macarrones y echarles tomate"}""")
-    else
-      None
-    }
-
-    //val receta = repository.getRecetaByDescripcion(descripcion)
+    val receta = Repository.getRecipeByDescription(descripcion)
 
     receta match {
-      case Some(receta) => Ok(receta)
+      case Some(receta) => Ok(JsonParser.recipeToJson(receta))
       case _ => NotFound
     }
 
