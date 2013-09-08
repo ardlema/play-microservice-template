@@ -11,8 +11,7 @@ object ApplicationBuild extends Build {
     // Add your project dependencies here,
     jdbc,
     anorm,
-    "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test",
-    "net.liftweb" % "lift-json-ext_2.10" % "2.5-M4"
+    "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test"
   )
 
 

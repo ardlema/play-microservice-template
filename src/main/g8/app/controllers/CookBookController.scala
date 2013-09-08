@@ -18,6 +18,7 @@ object CookBookController extends Controller {
   }
 
   def createReceta() = Action {
+
       Created
   }
 

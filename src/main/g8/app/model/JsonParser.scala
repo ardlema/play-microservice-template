@@ -1,12 +1,18 @@
 package model
 
-import net.liftweb.json.Serialization._
+import play.api.libs.json.Json
 
 object JsonParser {
-   implicit val formats = net.liftweb.json.DefaultFormats
+  implicit val recipeFormat = Json.format[Recipe]
 
   def recipeToJson(recipe: Recipe) = {
-    write(recipe)
+    val jsonRecipe = Json.toJson(recipe)
+    Json.stringify(jsonRecipe)
+  }
+
+  def jsonToRecipe(json: String) = {
+    val parsedJson = Json.parse(json)
+    Json.fromJson[Recipe](parsedJson).get
   }
 
 }

@@ -67,5 +67,8 @@ class FunctionalTest
 
   }
 
-  def thereShouldBeARecipeWithDescription(descripcion: String) = true
+  def thereShouldBeARecipeWithDescription(descripcion: String) = {
+    val recipe = Repository.getRecipeByDescription(descripcion)
+    recipe.isDefined should be(true)
+  }
 }
