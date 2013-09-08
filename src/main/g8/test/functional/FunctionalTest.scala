@@ -1,6 +1,6 @@
 package functional
 
-import org.scalatest.FeatureSpec
+import org.scalatest.{Tag, FeatureSpec}
 import play.api.test.Helpers._
 import play.api.test.{FakeRequest, FakeApplication}
 import org.scalatest.matchers.ShouldMatchers
@@ -12,14 +12,15 @@ class FunctionalTest
   extends FeatureSpec
   with ShouldMatchers {
 
+  val descripcion = "macarrones"
+  val dificultad = "facil"
+  val preparacion = "cocer los macarrones y echarles tomate"
+
   feature("El usuario puede obtener una receta") {
 
     scenario("el nombre de la receta existe") {
       running(FakeApplication()) {
         //Given
-        val descripcion = "macarrones"
-        val dificultad = "facil"
-        val preparacion = "cocer los macarrones y echarles tomate"
         Repository.addRecipe(Recipe(descripcion, dificultad, preparacion))
 
         //When
@@ -33,10 +34,38 @@ class FunctionalTest
 
     scenario("el nombre de la receta no existe") {
       running(FakeApplication()) {
+        //Given
+        Repository.clean()
+
+        //When
         val response: Result = route(FakeRequest(GET, "/receta/fabada")).get
 
+        //Then
         status(response) should be(NOT_FOUND)
       }
     }
   }
+
+  feature("El usuario puede crear una receta") {
+
+    scenario("el nombre de la receta no existe", Tag("wip")) {
+      running(FakeApplication()) {
+        //Given
+        Repository.clean()
+        val body = """{"descripcion":"macarrones","dificultad":"facil","preparacion":"cocer los macarrones y echarles tomate"}"""
+
+        //When
+        val response: Result = route(FakeRequest(POST, "/receta").withBody(body)).get
+
+        //Then
+        status(response) should be(CREATED)
+        thereShouldBeARecipeWithDescription(descripcion)
+      }
+    }
+
+    scenario("el nombre de la receta existe")  (pending)
+
+  }
+
+  def thereShouldBeARecipeWithDescription(descripcion: String) = true
 }

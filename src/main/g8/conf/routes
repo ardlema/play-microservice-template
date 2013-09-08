@@ -4,3 +4,5 @@
 
 # Cookbook routes
 GET     /receta/:descripcion        controllers.CookBookController.getReceta(descripcion: String)
+
+POST    /receta                     controllers.CookBookController.createReceta()
